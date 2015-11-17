@@ -2,8 +2,8 @@ import xml.etree.ElementTree as ET
 
 
 '''
-	xmlSpriteParser will parse an xml file that contains image coordinate data in a sprites
-	sheet.
+	xmlSpriteParser will parse an xml file that contains image coordinate data 
+	in a sprites sheet.
 
 	Example xml file:
 
@@ -58,20 +58,28 @@ class XmlSpriteParser(object):
 		
 	def getImageInfo(self):
 
-		''' This iterator will append a dictionary to the member dictionary, imagesCoors.
+		''' This iterator will append a dictionary to the member dictionary, 
+			imagesCoors.
 
-			for child in self.root.iter('spr'): #iterator through the root element and find all the elements named "spr"
+			for child in self.root.iter('spr'): # iterator through the root 
+												# element and find all the 
+												# elements named "spr"
 				
-				# append a dictionary to the member dictionary (imagesCoors) with all the image info from the current "spr" element.
-				# use the int() function to convert the child.get('name') from a string to an int so that the dictionary may be indexed
-				# using an integer. each child.get() function is getting a different attribute from the current element
+				# append a dictionary to the member dictionary (imagesCoors) 
+				# with all the image info from the current "spr" element.
+				# use the int() function to convert the child.get('name') from a
+				# string to an int so that the dictionary may be indexed
+				# using an integer. each child.get() function is getting a 
+				#different attribute from the current element
 				self.imagesCoors[int(child.get('name'))] = {"xCoor": child.get('x'), 
-					"yCoor": child.get('y'), "width": child.get('w'), "height": child.get('h')}
+					"yCoor": child.get('y'), "width": child.get('w'), 
+					"height": child.get('h')}
 
 		'''
 		for child in self.root.iter('spr'):
 			self.imagesCoors[int(child.get('name'))] = {"xCoor": child.get('x'), 
-				"yCoor": child.get('y'), "width": child.get('w'), "height": child.get('h')}
+				"yCoor": child.get('y'), "width": child.get('w'), 
+				"height": child.get('h')}
 	
 	# gets the number of "spr" elements in the xml. This number represents the 
 	# number of images that are in the cooresponding sprite sheet
