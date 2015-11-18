@@ -1,7 +1,9 @@
 import pygame
 from pygame import *
 
+import displayhandler
 import keyhandler
+from Entity import Entity
 
 DISPLAY = (800, 640)
 DEPTH = 32
@@ -14,15 +16,18 @@ def main():
     screen = display.set_mode(DISPLAY, FLAGS, DEPTH)
     display.set_caption("Use arrows to move!")
     timer = time.Clock()
-    bg = Surface((32, 32))
-    bg.convert()
-    bg.fill(Color("#000000"))
+    dh = displayhandler.DisplayHandler()
+    kh = keyhandler.KeyHandler()
+    player = Entity()
+
     print "before loop"
     done = False
     while not done:
         timer.tick(60)
-        pygame.display.flip()
-        done = keyhandler.key_update()
+        dh.update(screen, player)
+        done = kh.key_update()
+        kh.update_player(player, 5)
+
     pygame.quit()
 
 if __name__ == "__main__":

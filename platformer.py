@@ -202,7 +202,7 @@ def main():
             s = pygame.Surface((1000,750))  # the size of your rect
             s.set_alpha(128)                # alpha level
             s.fill((0,0,0))           # this fills the entire surface
-            screen.blit(s, (0,0))    # (0,0) are the top-left coordinates
+            screen.blit(s, (30,30))    # (0,0) are the top-left coordinates
             entities.draw(screen)
 
         entities3.draw(screen)
