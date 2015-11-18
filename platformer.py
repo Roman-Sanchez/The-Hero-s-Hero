@@ -49,7 +49,7 @@ def main():
     for row in level:
         for col in row:
             if col == "P":
-                p = Platform(x, y)
+                p = Platform(x, y, 1)
                 platforms.append(p)
                 entities.add(p)
             if col == "E":
@@ -86,10 +86,14 @@ def main():
         "PPPPPPPPPPPPPPPE        P",
         "PPPPPPPPPPPPPPPPPPPPPPPPP", ]
     # build the level
+
     for row in level2:
         for col in row:
             if col == "P":
-                p = Platform(x2, y2)
+                # if level[row][col] == "P":
+                #    p = Platform(x2, y2, 3)
+                # else:
+                p = Platform(x2, y2, 2)
                 platforms2.append(p)
                 entities2.add(p)
             if col == "E":
@@ -99,7 +103,50 @@ def main():
             x2 += 32
         y2 += 32
         x2 = 0
-        #end level 2 initialization
+
+        # end level intersect initialization
+        eIntersect = pygame.sprite.Group()
+        platintersect = []
+        x3 = y3 = 0
+    levintersect = [
+        "PPPPPPPPPPPPPPPPPPPPPPPPP",
+        "P  P                    P",
+        "P  PPPPPP               P",
+        "P  P     P    P         P",
+        "P  P      P   P         P",
+        "P  P       P  P         P",
+        "P  P         PP    PPPPPP",
+        "P  P          P         P",
+        "P  P          P         P",
+        "P  P          PPPPPP    P",
+        "P  P          PP        P",
+        "P  P          PPP      PP",
+        "P  PPPPP      PPPP    PPP",
+        "P             PPPPP  PPPP",
+        "P             P         P",
+        "P            PP         P",
+        "P          PP P         P",
+        "P       PP    P         P",
+        "P      PPPP   PE        P",
+        "PPPPPPPPPPPPPPPPPPPPPPPPP", ]
+    # build the level
+
+    for row in levintersect:
+        for col in row:
+            if col == "P":
+                # if level[row][col] == "P":
+                #    p = Platform(x2, y2, 3)
+                # else:
+                p = Platform(x3, y3, 4)
+                platintersect.append(p)
+                eIntersect.add(p)
+            x3 += 32
+        y3 += 32
+        x3 = 0
+
+        # end level intersect initialization
+
+
     entities3 = pygame.sprite.Group()
     entities3.add(player)
 
@@ -111,19 +158,21 @@ def main():
                 done = True
             if e.type == KEYDOWN and e.key == K_ESCAPE:
                 done = True
-            if e.type == KEYDOWN and e.key == K_UP:
+            if e.type == KEYDOWN and e.key == K_UP or e.type == KEYDOWN and e.key == K_z:
                 up = True
-            if e.type == KEYDOWN and e.key == K_DOWN:
-                down = True
+            if e.type == KEYDOWN and e.key == K_x:
+                pass
+                # down = True
             if e.type == KEYDOWN and e.key == K_LEFT:
                 left = True
             if e.type == KEYDOWN and e.key == K_RIGHT:
                 right = True
 
-            if e.type == KEYUP and e.key == K_UP:
+            if e.type == KEYUP and e.key == K_UP or e.type == KEYUP and e.key == K_z:
                 up = False
-            if e.type == KEYUP and e.key == K_DOWN:
-                down = False
+            if e.type == KEYUP and e.key == K_x:
+                if not player.coll_check(1,platforms) and not player.coll_check(-1,platforms):
+                    down = not down
             if e.type == KEYUP and e.key == K_LEFT:
                 left = False
             if e.type == KEYUP and e.key == K_RIGHT:
@@ -139,24 +188,33 @@ def main():
         # update player, draw everything else
         if down:
             player.update(up, down, left, right, platforms2)
+            entities.draw(screen)
+            s = pygame.Surface((1000,750))  # the size of your rect
+            s.set_alpha(100)                # alpha level
+            s.fill((0,0,0))           # this fills the entire surface
+            screen.blit(s, (0,0))    # (0,0) are the top-left coordinates
             entities2.draw(screen)
-            entities3.draw(screen)
+
 
         else:
             player.update(up, down, left, right, platforms)
+            entities2.draw(screen)
+            s = pygame.Surface((1000,750))  # the size of your rect
+            s.set_alpha(128)                # alpha level
+            s.fill((0,0,0))           # this fills the entire surface
+            screen.blit(s, (0,0))    # (0,0) are the top-left coordinates
             entities.draw(screen)
-            entities3.draw(screen)
 
-
-
+        entities3.draw(screen)
+        eIntersect.draw(screen)
         pygame.display.flip()
 
     pygame.quit()
 
-
 class Entity(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
+
 
 
 class Player(Entity):
@@ -216,14 +274,32 @@ class Player(Entity):
                 if yvel < 0:
                     self.rect.top = p.rect.bottom
 
+    def coll_check(self, yvel, platforms):
+        for p in platforms:
+            if sprite.collide_rect(self, p):
+                print "collision!"
+                return True
+            else:
+                print "No collision!"
+                return False
+
 
 class Platform(Entity):
-    def __init__(self, x, y):
+    def __init__(self, x, y, white):
         Entity.__init__(self)
         self.image = Surface((32, 32))
         self.image.convert()
-        self.image.fill(Color("#DDDDDD"))
+        if white == 1:
+            self.image.fill(Color("#FFFF44"))
+        if white == 2:
+            self.image.fill(Color("#4444FF"))
+        if white == 3:
+            self.image.fill(Color("#FF44FF"))
+        if white == 4:
+            self.image.fill(Color("#FFFFFF"))
         self.rect = Rect(x, y, 32, 32)
+
+
 
     def update(self):
         pass
@@ -231,7 +307,7 @@ class Platform(Entity):
 
 class ExitBlock(Platform):
     def __init__(self, x, y):
-        Platform.__init__(self, x, y)
+        Platform.__init__(self, x, y, 1)
         self.image.fill(Color("#0033FF"))
 
 
