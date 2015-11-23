@@ -1,6 +1,5 @@
 import xml.etree.ElementTree as ET
 
-
 '''
 	xmlSpriteParser will parse an xml file that contains image coordinate data 
 	in a sprites sheet.
@@ -34,31 +33,32 @@ import xml.etree.ElementTree as ET
 </img>
 
 '''
+
+
 class XmlSpriteParser(object):
+    def __init__(self, fileName):
+        self.okayToUpdate = True
+        self.numImages = 0
+        self.fileName = fileName
+        self.tree = ET.parse(self.fileName)
+        self.root = self.tree.getroot()
+        # will be a dictionary of dictionaries
+        # indexed like so, imagesCoors[0]['item in sub-dictionary ex. 'xCoor'']
+        self.imagesCoors = {}
+        self.update()
+        self.findNumImages()
 
-	def __init__(self, fileName):
-		self.okayToUpdate = True
-		self.numImages = 0
-		self.fileName = fileName
-		self.tree = ET.parse(self.fileName)
-		self.root = self.tree.getroot()
-		# will be a dictionary of dictionaries
-		# indexed like so, imagesCoors[0]['item in sub-dictionary ex. 'xCoor'']
-		self.imagesCoors = {}
-		self.update()
-		self.findNumImages()
+    def update(self):
 
-	def update(self):
+        # Controls whether the getImageInfo is called. This method should only
+        # Be called once
+        if (self.okayToUpdate):
+            self.getImageInfo()
+            self.okayToUpdate = False
 
-		# Controls whether the getImageInfo is called. This method should only 
-		# Be called once 
-		if (self.okayToUpdate):
-			self.getImageInfo()
-			self.okayToUpdate = False
-		
-	def getImageInfo(self):
+    def getImageInfo(self):
 
-		''' This iterator will append a dictionary to the member dictionary, 
+        ''' This iterator will append a dictionary to the member dictionary,
 			imagesCoors.
 
 			for child in self.root.iter('spr'): # iterator through the root 
@@ -76,28 +76,29 @@ class XmlSpriteParser(object):
 					"height": child.get('h')}
 
 		'''
-		for child in self.root.iter('spr'):
-			self.imagesCoors[int(child.get('name'))] = {"xCoor": child.get('x'), 
-				"yCoor": child.get('y'), "width": child.get('w'), 
-				"height": child.get('h')}
-	
-	# gets the number of "spr" elements in the xml. This number represents the 
-	# number of images that are in the cooresponding sprite sheet
-	def findNumImages(self):
-		self.numImages = len(self.imagesCoors)
+        for child in self.root.iter('spr'):
+            self.imagesCoors[int(child.get('name'))] = {"xCoor": child.get('x'),
+                                                        "yCoor": child.get('y'), "width": child.get('w'),
+                                                        "height": child.get('h')}
+
+    # gets the number of "spr" elements in the xml. This number represents the
+    # number of images that are in the cooresponding sprite sheet
+    def findNumImages(self):
+        self.numImages = len(self.imagesCoors)
+
 
 # tests the XmlSpriteParser
 def main():
+    test = XmlSpriteParser('MetalSlugSprites/newSpriteSheet.sprites')
+    print test.okayToUpdate
+    test.update()
+    print test.imagesCoors[16]['width']
+    print test.okayToUpdate
+    print test.numImages
 
-	test = XmlSpriteParser('MetalSlugSprites/newSpriteSheet.sprites')
-	print test.okayToUpdate
-	test.update()
-	print test.imagesCoors[16]['width']
-	print test.okayToUpdate
-	print test.numImages
+    tree = ET.parse('MetalSlugSprites/newSpriteSheet.sprites')
+    root = tree.getroot()
 
-	tree = ET.parse('MetalSlugSprites/newSpriteSheet.sprites')
-	root = tree.getroot()
 
 if __name__ == "__main__":
-	main()
+    main()
