@@ -1,8 +1,10 @@
 import pygame
 from pygame import *
 
+import MapHandler
 import displayhandler
 import keyhandler
+import json
 from Entity import Entity
 
 DISPLAY = (800, 640)
@@ -19,6 +21,9 @@ def main():
     dh = displayhandler.DisplayHandler()
     kh = keyhandler.KeyHandler()
     player = Entity()
+    MapHandler.load('map1.txt','map1b.txt')
+
+
 
     print "before loop"
     done = False
