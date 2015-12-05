@@ -5,7 +5,8 @@ import MapHandler
 import displayhandler
 import keyhandler
 import json
-from Entity import Entity
+from entity import Entity
+from spriteSheet import SpriteSheet
 
 DISPLAY = (800, 640)
 DEPTH = 32
@@ -20,7 +21,7 @@ def main():
     timer = time.Clock()
     dh = displayhandler.DisplayHandler()
     kh = keyhandler.KeyHandler()
-    player = Entity()
+    player = SpriteSheet("sprites\OptimizedSprites\\nerdOp.png")
     MapHandler.load('map1.txt','map1b.txt')
 
 

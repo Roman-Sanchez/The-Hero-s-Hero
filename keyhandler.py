@@ -42,15 +42,23 @@ class KeyHandler:
         if self.kup: #and player.onGround:
             player.top += -5
             player.velY += 10
+            player.updateCurrentImage()
+
         if self.kright:
             # player.move(5,0)
             player.left += 5
-            player.velX += 5
+            player.velX += 5    
+            player.updateCurrentImage()
+            
         if self.kleft:
             player.left += -5
             player.velX += -5
-
+            player.updateCurrentImage()
+            
         if self.kdown:
             # player.move(5,0)
             player.top += 5
             player.velY += -5
+            player.updateCurrentImage()
+            
+    

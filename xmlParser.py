@@ -86,10 +86,10 @@ class XmlSpriteParser(object):
     def findNumImages(self):
         self.numImages = len(self.imagesCoors)
 
-
+'''
 # tests the XmlSpriteParser
 def main():
-    test = XmlSpriteParser('MetalSlugSprites/newSpriteSheet.sprites')
+    test = XmlSpriteParser('C:\Users\Roman\SkyDrive\Roman\'s School\CS 290\Python Game Dev\Object Oriented GameMetalSlugSprites/newSpriteSheet.sprites')
     print test.okayToUpdate
     test.update()
     print test.imagesCoors[16]['width']
@@ -102,3 +102,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+'''
