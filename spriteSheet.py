@@ -48,7 +48,6 @@ class SpriteSheet(Entity):
 
 	def updateCurrentImage(self):
 		
-		print self.animationCounter
 		if (self.animationRate == self.animationCounter):
 			if (self.currentImage < self.numImages):
 				self.currentImage += 1
