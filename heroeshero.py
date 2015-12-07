@@ -6,6 +6,7 @@ import keyhandler
 import json
 from Entity import Entity
 from MapHandler import MapHandler
+from spriteSheet import SpriteSheet
 
 DISPLAY = (800, 640)
 DEPTH = 32
