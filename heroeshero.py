@@ -20,8 +20,12 @@ def main():
     timer = time.Clock()
     dh = displayhandler.DisplayHandler()
     kh = keyhandler.KeyHandler()
-    player = Entity()
+    #player = Entity()
     mh = MapHandler()
+    player = SpriteSheet("sprites\OptimizedSprites\\nerdOp.png")
+    #MapHandler.load('map1.txt','map1b.txt')
+
+
 
     print "before loop"
     done = False

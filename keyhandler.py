@@ -1,6 +1,8 @@
 import pygame
 from pygame import *
 
+movementSpeed = 3
+
 class KeyHandler:
     def __init__(self):
         self.kup = False
@@ -38,19 +40,32 @@ class KeyHandler:
         return False
 
     def update_player(self,player, max_vel):
+        
+        playerMoved = False
 
         if self.kup: #and player.onGround:
-            player.top += -5
-            player.velY += 10
+            player.top += -movementSpeed
+            player.velY += movementSpeed
+            playerMoved = True
+
         if self.kright:
             # player.move(5,0)
-            player.left += 5
-            player.velX += 5
+            player.left += movementSpeed
+            player.velX += movementSpeed
+            playerMoved = True
+            
         if self.kleft:
-            player.left += -5
-            player.velX += -5
-
+            player.left += -movementSpeed
+            player.velX += -movementSpeed
+            playerMoved = True
+            
         if self.kdown:
             # player.move(5,0)
-            player.top += 5
-            player.velY += -5
+            player.top += movementSpeed
+            player.velY += -movementSpeed
+            playerMoved = True
+            
+        if (playerMoved):
+            player.updateCurrentImage()
+            
+    
