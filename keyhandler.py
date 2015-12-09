@@ -66,6 +66,6 @@ class KeyHandler:
             playerMoved = True
             
         if (playerMoved):
-            player.updateCurrentImage()
+            player.characterSkin.updateCurrentImage()
             
     

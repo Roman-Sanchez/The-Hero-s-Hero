@@ -1,9 +1,8 @@
 import pygame
 from xmlParser import XmlSpriteParser
-from Entity import *
 
+class SpriteSheet(object):
 
-class SpriteSheet(Entity):
     def __init__(self, imageFileName):
 
         self.velX = 0
@@ -12,7 +11,8 @@ class SpriteSheet(Entity):
         self.onGround = False
 
         self.imageFileName = imageFileName
-        self.image = pygame.image.load(self.imageFileName)
+        self.image = pygame.transform.scale(pygame.image.load(self.imageFileName), (128, 64))
+        #self.image = pygame.image.load(self.imageFileName)
         self.xmlFileName = self.replaceFileExtension(self.imageFileName)
 
         # gets the x, y coordinates and the width and height for each sprite in

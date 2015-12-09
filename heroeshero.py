@@ -23,7 +23,7 @@ def main():
     kh = keyhandler.KeyHandler()
     #player = Entity()
     mh = MapHandler()
-    player = SpriteSheet("sprites\OptimizedSprites\\nerdOp.png")
+    player = Entity("sprites\OptimizedSprites\\nerdOp.png")
     #MapHandler.load('map1.txt','map1b.txt')
 
 

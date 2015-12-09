@@ -23,8 +23,8 @@ class DisplayHandler:
 
     def updatePlayer(self, screen, player):
 
-    	screen.blit(player.image, (player.left, player.top),
-    		(int(player.imageData.imagesCoors[player.currentImage]['xCoor']),
-			int(player.imageData.imagesCoors[player.currentImage]['yCoor']),
-			int(player.imageData.imagesCoors[player.currentImage]['width']),
-			int(player.imageData.imagesCoors[player.currentImage]['height'])))
+    	screen.blit(player.characterSkin.image, (player.left, player.top),
+    		(int(player.characterSkin.imageData.imagesCoors[player.characterSkin.currentImage]['xCoor']) / 2,
+			int(player.characterSkin.imageData.imagesCoors[player.characterSkin.currentImage]['yCoor']) / 2,
+			int(player.characterSkin.imageData.imagesCoors[player.characterSkin.currentImage]['width']) / 2,
+			int(player.characterSkin.imageData.imagesCoors[player.characterSkin.currentImage]['height']) / 2))
