@@ -3,10 +3,8 @@ from pygame import *
 
 import displayhandler
 import keyhandler
-import json
 from Entity import Entity
 from MapHandler import MapHandler
-from spriteSheet import SpriteSheet
 
 DISPLAY = (800, 640)
 DEPTH = 32
@@ -21,7 +19,6 @@ def main():
     timer = time.Clock()
     dh = displayhandler.DisplayHandler()
     kh = keyhandler.KeyHandler()
-    #player = Entity()
     mh = MapHandler()
     player = Entity("sprites\OptimizedSprites\\nerdOp.png")
     #MapHandler.load('map1.txt','map1b.txt')
@@ -32,6 +29,7 @@ def main():
     done = False
     while not done:
         timer.tick(60)
+        print timer.get_fps(), "\n"
         dh.update(screen, player, mh)
         done = kh.key_update()
         kh.update_player(player, 5)
