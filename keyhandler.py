@@ -9,6 +9,8 @@ class KeyHandler:
         self.kdown = False
         self.kleft = False
         self.kright = False
+        self.kworld_swap = False;
+
 
 
 
@@ -26,6 +28,9 @@ class KeyHandler:
                 self.kleft = True
             if e.type == KEYDOWN and e.key == K_RIGHT:
                 self.kright = True
+            if e.type == KEYDOWN and e.key == K_z:
+                self.kworld_swap = not self.kworld_swap
+
 
             if e.type == KEYUP and e.key == K_UP:
                 self.kup = False
@@ -37,7 +42,17 @@ class KeyHandler:
                 self.kright = False
             if e.type == pygame.QUIT:
                 return True
+
         return False
+
+    def check_world(self):
+        print self.kworld_swap
+        if(self.kworld_swap):
+            print "true!"
+            return True
+        else:
+            return False
+
 
     def update_player(self,player, max_vel):
         
@@ -67,5 +82,6 @@ class KeyHandler:
             
         if (playerMoved):
             player.characterSkin.updateCurrentImage()
-            
+
+
     

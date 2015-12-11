@@ -2,6 +2,9 @@
 import pygame
 from pygame import *
 
+import keyhandler
+from heroeshero import kh
+
 
 class DisplayHandler:
     def __init__(self):
@@ -17,8 +20,13 @@ class DisplayHandler:
                 solid = Surface((32, 32))
                 solid.convert()
                 solid.fill(Color("#00FFFF"))
-                for tile in mh.map_a:
-                    screen.blit(solid,(tile.locX,tile.locY ))
+                if (not kh.check_world()):
+                    for tile in mh.map_a:
+                        screen.blit(solid,(tile.locX,tile.locY ))
+                else:
+                    for tile in mh.map_b:
+                        screen.blit(solid,(tile.locX,tile.locY ))
+                        print "B "
                 pygame.display.flip()
 
     def updatePlayer(self, screen, player):

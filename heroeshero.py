@@ -9,6 +9,7 @@ from MapHandler import MapHandler
 DISPLAY = (800, 640)
 DEPTH = 32
 FLAGS = 0
+kh = keyhandler.KeyHandler()
 
 
 def main():
@@ -18,7 +19,7 @@ def main():
     display.set_caption("Use arrows to move!")
     timer = time.Clock()
     dh = displayhandler.DisplayHandler()
-    kh = keyhandler.KeyHandler()
+    #kh = keyhandler.KeyHandler()
     mh = MapHandler()
     player = Entity("sprites\OptimizedSprites\\nerdOp.png")
     #MapHandler.load('map1.txt','map1b.txt')
@@ -29,7 +30,7 @@ def main():
     done = False
     while not done:
         timer.tick(60)
-        print timer.get_fps(), "\n"
+        #print timer.get_fps(), "\n"
         dh.update(screen, player, mh)
         done = kh.key_update()
         kh.update_player(player, 5)
