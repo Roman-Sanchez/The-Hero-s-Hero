@@ -5,11 +5,6 @@ class SpriteSheet(object):
 
     def __init__(self, imageFileName):
 
-        self.velX = 0
-        self.velY = 0
-        self.hasPhysics = True
-        self.onGround = False
-
         self.imageFileName = imageFileName
         self.image = pygame.transform.scale(pygame.image.load(self.imageFileName), (128, 64))
         #self.image = pygame.image.load(self.imageFileName)
@@ -28,7 +23,7 @@ class SpriteSheet(object):
         # number the slower the animation.
         self.animationRate = 10
 
-        # will imcrement and when it is the number that the animationRate is the
+        # will increment and when it is the number that the animationRate is the
         # currentImage will be incremented to the next image.
         self.animationCounter = 0
 
