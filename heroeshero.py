@@ -10,7 +10,6 @@ DISPLAY = (800, 640)
 DEPTH = 32
 FLAGS = 0
 
-
 def main():
     print "main"
     pygame.init()
@@ -22,8 +21,6 @@ def main():
     mh = MapHandler()
     player = Entity("sprites\OptimizedSprites\\nerdOp.png")
     #MapHandler.load('map1.txt','map1b.txt')
-
-
 
     print "before loop"
     done = False
