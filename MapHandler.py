@@ -2,7 +2,7 @@ from Tile import Tile
 
 
 class MapHandler:
-    def __init__(self, file1 = 'map1.txt', file1b = 'map1b'):
+    def __init__(self, file1 = 'map1.txt', file1b = 'map1b.txt'):
         self.map_a = ""
         self.map_b = ""
         self.load(file1, file1b)
