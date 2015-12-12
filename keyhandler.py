@@ -9,7 +9,7 @@ class KeyHandler:
         self.kdown = False
         self.kleft = False
         self.kright = False
-        self.kworld_swap = True;
+        self.kworld_swap = True
 
 
 
@@ -58,31 +58,40 @@ class KeyHandler:
     def update_player(self,player, max_vel):
         
         playerMoved = False
+        movementDirection = "Right"
 
         if self.kup: #and player.onGround:
             player.top += -movementSpeed
             player.velY += movementSpeed
+            movementDirection = "Up"
             playerMoved = True
 
         if self.kright:
             # player.move(5,0)
             player.left += movementSpeed
             player.velX += movementSpeed
+            movementDirection = "Right"
             playerMoved = True
             
         if self.kleft:
             player.left += -movementSpeed
             player.velX += -movementSpeed
+            movementDirection = "Left"
             playerMoved = True
             
         if self.kdown:
             # player.move(5,0)
             player.top += movementSpeed
             player.velY += -movementSpeed
+            movementDirection = "Down"
             playerMoved = True
             
         if (playerMoved):
             player.characterSkin.updateCurrentImage()
+
+            # updates animation based off the movement
+            player.characterSkin.setAnimation(movementDirection)
+            player.characterSkin.setImageCoors(movementDirection)
 
 
     
