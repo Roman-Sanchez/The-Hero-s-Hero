@@ -9,7 +9,7 @@ class KeyHandler:
         self.kdown = False
         self.kleft = False
         self.kright = False
-        self.kworld_swap = False;
+        self.kworld_swap = True;
 
 
 
@@ -30,6 +30,7 @@ class KeyHandler:
                 self.kright = True
             if e.type == KEYDOWN and e.key == K_z:
                 self.kworld_swap = not self.kworld_swap
+                print "*****", (self.kworld_swap), "*****\n"
 
 
             if e.type == KEYUP and e.key == K_UP:

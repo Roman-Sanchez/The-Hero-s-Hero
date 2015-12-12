@@ -28,7 +28,7 @@ def main():
     while not done:
         timer.tick(60)
         #print timer.get_fps(), "\n"
-        dh.update(screen, player, mh)
+        dh.update(screen, player, mh, kh)
         done = kh.key_update()
         kh.update_player(player, 5)
 
