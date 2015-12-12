@@ -14,7 +14,7 @@ class KeyHandler:
 
 
 
-    def key_update(self):
+    def key_update(self, player):
         for e in pygame.event.get():
             if e.type == QUIT:
                 return True
@@ -35,12 +35,16 @@ class KeyHandler:
 
             if e.type == KEYUP and e.key == K_UP:
                 self.kup = False
+                player.characterSkin.resetCurrentImage()
             if e.type == KEYUP and e.key == K_DOWN:
                 self.kdown = False
+                player.characterSkin.resetCurrentImage()
             if e.type == KEYUP and e.key == K_LEFT:
                 self.kleft = False
+                player.characterSkin.resetCurrentImage()
             if e.type == KEYUP and e.key == K_RIGHT:
                 self.kright = False
+                player.characterSkin.resetCurrentImage()
             if e.type == pygame.QUIT:
                 return True
 
@@ -55,7 +59,7 @@ class KeyHandler:
             return False
 
 
-    def update_player(self,player, max_vel):
+    def update_player(self, player, max_vel):
         
         playerMoved = False
         movementDirection = "Right"

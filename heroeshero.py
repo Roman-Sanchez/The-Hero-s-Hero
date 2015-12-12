@@ -29,7 +29,7 @@ def main():
         timer.tick(60)
         #print timer.get_fps(), "\n"
         dh.update(screen, player, mh, kh)
-        done = kh.key_update()
+        done = kh.key_update(player)
         kh.update_player(player, 5)
 
     pygame.quit()

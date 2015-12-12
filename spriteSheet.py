@@ -93,3 +93,6 @@ class SpriteSheet(object):
             self.animationCounter = 0
 
         self.animationCounter = self.animationCounter + 1
+
+    def resetCurrentImage(self):
+        self.currentImage = 0
