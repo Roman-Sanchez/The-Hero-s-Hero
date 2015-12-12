@@ -10,11 +10,13 @@ class KeyHandler:
         self.kleft = False
         self.kright = False
         self.kworld_swap = True
+        self.keyUp = False
 
 
 
 
-    def key_update(self, player):
+    def key_update(self):
+        self.keyUp = False
         for e in pygame.event.get():
             if e.type == QUIT:
                 return True
@@ -35,16 +37,16 @@ class KeyHandler:
 
             if e.type == KEYUP and e.key == K_UP:
                 self.kup = False
-                player.characterSkin.resetCurrentImage()
+                self.keyUp = True
             if e.type == KEYUP and e.key == K_DOWN:
                 self.kdown = False
-                player.characterSkin.resetCurrentImage()
+                self.keyUp = True
             if e.type == KEYUP and e.key == K_LEFT:
                 self.kleft = False
-                player.characterSkin.resetCurrentImage()
+                self.keyUp = True
             if e.type == KEYUP and e.key == K_RIGHT:
                 self.kright = False
-                player.characterSkin.resetCurrentImage()
+                self.keyUp = True
             if e.type == pygame.QUIT:
                 return True
 
@@ -96,6 +98,9 @@ class KeyHandler:
             # updates animation based off the movement
             player.characterSkin.setAnimation(movementDirection)
             player.characterSkin.setImageCoors(movementDirection)
+
+        if (self.keyUp):
+            player.characterSkin.resetCurrentImage()
 
 
     
