@@ -1,10 +1,5 @@
-
 import pygame
 from pygame import *
-
-import keyhandler
-from heroeshero import kh
-
 
 class DisplayHandler:
     def __init__(self):
@@ -20,7 +15,7 @@ class DisplayHandler:
                 solid.convert()
                 solid.fill(Color("#00FFFF"))
 
-                # Will check to see if the world needs to be swapped and will display the appropriate map
+                # Will check to see if the map needs to be swapped and will display the appropriate map
                 if (kh.kworld_swap == True):
                     for tile in mh.map_a:
                         screen.blit(solid,(tile.locX,tile.locY ))
@@ -30,6 +25,8 @@ class DisplayHandler:
 
                 pygame.display.flip()
 
+    # Blits the player to the screen by accessing the characterSkin variable(spriteSheet) and uses the
+    # coordinate data stored in the spriteSheet
     def updatePlayer(self, screen, player):
 
         screen.blit(player.characterSkin.image, (player.left, player.top),
