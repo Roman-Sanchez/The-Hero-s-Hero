@@ -5,6 +5,7 @@ import displayhandler
 import keyhandler
 from Entity import Entity
 from MapHandler import MapHandler
+from physics import apply_physics
 
 DISPLAY = (800, 640)
 DEPTH = 32
@@ -31,6 +32,12 @@ def main():
         dh.update(screen, player, mh, kh)
         done = kh.key_update()
         kh.update_player(player, 5)
+        if kh.check_world():
+            for tile in mh.map_b:
+                apply_physics(tile, player)
+        else:
+            for tile in mh.map_a:
+                apply_physics(tile, player)
 
     pygame.quit()
 

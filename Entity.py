@@ -12,7 +12,8 @@ class Entity(Rect):
         self.image = Surface((32, 32))
         self.image.convert()
         self.image.fill(Color("#FF0000"))
-        self = Rect(0, 0, 32, 32)
+        super( Entity, self).__init__(0,0,32,32)
+
 
     def __init__(self, imageFilename):
         self.velX = 0
@@ -21,7 +22,7 @@ class Entity(Rect):
         self.onGround = False
         self.imageFilename = imageFilename
         self.characterSkin = SpriteSheet(self.imageFilename)
-        self = Rect(0, 0, 32, 32)
+        super( Entity, self).__init__(0,0,32,32)
     '''
     def __init__(self, x,y ,velx, vely, isStatic, image):
         self.velX = velx

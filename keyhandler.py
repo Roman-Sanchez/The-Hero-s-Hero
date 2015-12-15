@@ -32,7 +32,7 @@ class KeyHandler:
                 self.kright = True
             if e.type == KEYDOWN and e.key == K_z:
                 self.kworld_swap = not self.kworld_swap
-                print "*****", (self.kworld_swap), "*****\n"
+                #print "*****", (self.kworld_swap), "*****\n"
 
 
             if e.type == KEYUP and e.key == K_UP:
@@ -53,9 +53,8 @@ class KeyHandler:
         return False
 
     def check_world(self):
-        print self.kworld_swap
+        #print self.kworld_swap
         if(self.kworld_swap):
-            print "true!"
             return True
         else:
             return False
@@ -67,27 +66,28 @@ class KeyHandler:
         movementDirection = "Right"
 
         if self.kup: #and player.onGround:
-            player.top += -movementSpeed
+            player.move_ip(0,-movementSpeed)
+
             player.velY += movementSpeed
             movementDirection = "Up"
             playerMoved = True
 
         if self.kright:
             # player.move(5,0)
-            player.left += movementSpeed
+            player.move_ip(movementSpeed,0)
             player.velX += movementSpeed
             movementDirection = "Right"
             playerMoved = True
             
         if self.kleft:
-            player.left += -movementSpeed
+            player.move_ip(-movementSpeed,0)
             player.velX += -movementSpeed
             movementDirection = "Left"
             playerMoved = True
             
         if self.kdown:
             # player.move(5,0)
-            player.top += movementSpeed
+            player.move_ip(0,movementSpeed)
             player.velY += -movementSpeed
             movementDirection = "Down"
             playerMoved = True
