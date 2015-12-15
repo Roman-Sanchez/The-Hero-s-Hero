@@ -8,4 +8,4 @@ class Tile(Rect):
 
         self.material = material
 
-        self.rect = Rect(self.locX, self.locY, 32, 32)
+        super( Tile, self).__init__(self.locX, self.locY, 32, 32)

@@ -32,13 +32,15 @@ def main():
         dh.update(screen, player, mh, kh)
         done = kh.key_update()
         kh.update_player(player, 5)
+        i = 0
         if kh.check_world():
             for tile in mh.map_b:
                 apply_physics(tile, player)
+                i +=1
         else:
             for tile in mh.map_a:
                 apply_physics(tile, player)
-
+       # print "looped " ,i , " times"
     pygame.quit()
 
 if __name__ == "__main__":

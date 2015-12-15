@@ -5,7 +5,7 @@ class DisplayHandler:
     def __init__(self):
         self.bg = Surface((800, 640))
         self.bg.convert()
-        self.bg.fill(Color("#0000FF"))
+        self.bg.fill(Color("#FFFFFF"))
 
     def update(self,screen, player, mh, kh):
 
@@ -13,7 +13,7 @@ class DisplayHandler:
                 self.updatePlayer(screen, player)
                 solid = Surface((32, 32))
                 solid.convert()
-                solid.fill(Color("#00FFFF"))
+                solid.fill(Color("#222222"))
 
                 # Will check to see if the map needs to be swapped and will display the appropriate map
                 if (kh.kworld_swap == True):

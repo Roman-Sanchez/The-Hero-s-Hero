@@ -4,7 +4,6 @@ from pygame import *
 def apply_physics(static, dynamic):
     if static.colliderect(dynamic):
         print "collision!"
-        print "now"
         clipping = static.clip(dynamic)
         if clipping.left > dynamic.left:
             dynamic.move(-clipping.left,0)

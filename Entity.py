@@ -22,7 +22,7 @@ class Entity(Rect):
         self.onGround = False
         self.imageFilename = imageFilename
         self.characterSkin = SpriteSheet(self.imageFilename)
-        super( Entity, self).__init__(0,0,32,32)
+        super( Entity, self).__init__(64,64,32,32)
     '''
     def __init__(self, x,y ,velx, vely, isStatic, image):
         self.velX = velx

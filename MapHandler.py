@@ -15,6 +15,7 @@ class MapHandler:
 
     @staticmethod
     def parse_file(file_in):
+        num_tiles = 0
         x = y = 0
         map_out = []
         for row in file_in:
@@ -22,13 +23,16 @@ class MapHandler:
                 if col == "P":
                     t = Tile(x, y, 1)
                     map_out.append(t)
+                    num_tiles +=1
                     # entities.add(t)
                 if col == "E":
                     e = Tile(x, y, 2)
                     map_out.append(e)
+                    num_tiles +=1
                     # entities.add(e)
                 x += 32
+               # num_tiles +=1
             y += 32
             x = 0
-
+        print "read ",num_tiles," into map"
         return map_out
