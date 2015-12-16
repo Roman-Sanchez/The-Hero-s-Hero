@@ -33,13 +33,37 @@ def main():
         done = kh.key_update()
         kh.update_player(player, 5)
         i = 0
-        if kh.check_world():
+
+
+        if player.onGround:
+            #print "grounded!"
+            i = 1
+        else:
+            if player.velY < 8:
+                player.velY += 1
+
+
+        if not kh.check_world():
             for tile in mh.map_b:
                 apply_physics(tile, player)
                 i +=1
         else:
             for tile in mh.map_a:
                 apply_physics(tile, player)
+
+        player.move_ip(player.velX, 0 )
+        player.velX = 0
+        if not kh.check_world():
+            for tile in mh.map_b:
+                apply_physics(tile, player)
+                i +=1
+        else:
+            for tile in mh.map_a:
+                apply_physics(tile, player)
+
+        player.move_ip(0, player.velY )
+
+
        # print "looped " ,i , " times"
     pygame.quit()
 

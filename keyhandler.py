@@ -1,7 +1,7 @@
 import pygame
 from pygame import *
 
-movementSpeed = 3
+movementSpeed = 2
 
 class KeyHandler:
     def __init__(self):
@@ -38,6 +38,7 @@ class KeyHandler:
             if e.type == KEYUP and e.key == K_UP:
                 self.kup = False
                 self.keyUp = True
+
             if e.type == KEYUP and e.key == K_DOWN:
                 self.kdown = False
                 self.keyUp = True
@@ -65,33 +66,39 @@ class KeyHandler:
         playerMoved = False
         movementDirection = "Right"
 
-        if self.kup: #and player.onGround:
-            player.move_ip(0,-movementSpeed)
+        if self.kup:
+            if player.velY > - movementSpeed and player.onGround:
+                #player.move_ip(0,-movementSpeed)
+                player.velY = -15
+                movementDirection = "Up"
+                playerMoved = True
+                player.onGround = False
+        else:
+            if player.velY == - movementSpeed:
+                player.velY = 0
 
-            player.velY += movementSpeed
-            movementDirection = "Up"
-            playerMoved = True
 
-        if self.kright:
+
+        if self.kright and player.velX < movementSpeed:
             # player.move(5,0)
-            player.move_ip(movementSpeed,0)
-            player.velX += movementSpeed
+            #player.move_ip(movementSpeed,0)
+            player.velX = movementSpeed
+            print "velX ",player.velX
             movementDirection = "Right"
             playerMoved = True
+        else:
+            if player.velX == movementSpeed:
+                player.velX = 0
             
-        if self.kleft:
-            player.move_ip(-movementSpeed,0)
-            player.velX += -movementSpeed
+        if self.kleft and player.velX > -movementSpeed:
+            #player.move_ip(-movementSpeed,0)
+            player.velX = -movementSpeed
             movementDirection = "Left"
             playerMoved = True
-            
-        if self.kdown:
-            # player.move(5,0)
-            player.move_ip(0,movementSpeed)
-            player.velY += -movementSpeed
-            movementDirection = "Down"
-            playerMoved = True
-            
+        else:
+            if player.velX == - movementSpeed:
+                player.velX = 0
+
         if (playerMoved):
             player.characterSkin.updateCurrentImage()
 
